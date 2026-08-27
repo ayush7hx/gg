@@ -5,7 +5,7 @@ import discord
 import functools
 from typing import Optional, Any
 import asyncio
-from utils.emoji_sync import normalize_markup
+from utils.emoji_sync import normalize_markup, normalize_embed
 
 __all__ = ("Context", )
 
@@ -60,6 +60,10 @@ class Context(commands.Context):
             return
         if content:
             content = normalize_markup(content, self.bot, getattr(self.bot, "emoji_index", None))
+        if kwargs.get("embed"):
+            normalize_embed(kwargs["embed"], self.bot, getattr(self.bot, "emoji_index", None))
+        for embed in kwargs.get("embeds", []):
+            normalize_embed(embed, self.bot, getattr(self.bot, "emoji_index", None))
         return await super().send(content, **kwargs)
 
     async def reply(self,
@@ -74,6 +78,10 @@ class Context(commands.Context):
             return
         if content:
             content = normalize_markup(content, self.bot, getattr(self.bot, "emoji_index", None))
+        if kwargs.get("embed"):
+            normalize_embed(kwargs["embed"], self.bot, getattr(self.bot, "emoji_index", None))
+        for embed in kwargs.get("embeds", []):
+            normalize_embed(embed, self.bot, getattr(self.bot, "emoji_index", None))
         return await super().reply(content, **kwargs)
 
     async def release(self, delay: Optional[int] = None) -> None:
