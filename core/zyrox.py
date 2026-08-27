@@ -62,6 +62,9 @@ class zyrox(commands.AutoShardedBot):
     @tasks.loop(seconds=30)
     async def status_task(self):
         await self.wait_until_ready()
+        # Guild emoji cache can finish populating shortly after on_ready.
+        # Refresh it periodically so embeds use the current server emoji IDs.
+        self.emoji_index = build_emoji_index(self)
         self.status_list = [(discord.ActivityType.playing, "DARK INFINITE ERA")]
         await self.change_presence(
             status=discord.Status.do_not_disturb,
