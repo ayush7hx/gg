@@ -6,7 +6,11 @@ import asyncio
 import random
 import time
 from utils.ai_utils import poly_image_gen, generate_image_prodia
-from prodia.constants import Model
+try:
+    from prodia.constants import Model
+except ImportError:
+    # The imagine cog is optional and is not loaded by the default bot setup.
+    Model = None
 from utils.Tools import *
 
 blacklisted_words = [
@@ -150,5 +154,4 @@ class AiStuffCog(commands.Cog):
 
 
         await interaction.followup.send(embed=embed, file=img_file, ephemeral=True)
-
 

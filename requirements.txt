@@ -22,7 +22,6 @@ pyttsx3
 PyYAML
 openai
 google-generativeai
-prodia
 duckduckgo-search==6.3.6
 pillow==11.0.0
 colorama
