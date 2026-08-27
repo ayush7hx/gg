@@ -63,8 +63,10 @@ class zyrox(commands.AutoShardedBot):
     async def status_task(self):
         await self.wait_until_ready()
         self.status_list = [(discord.ActivityType.playing, "DARK INFINITE ERA")]
-        await self.change_presence(activity=discord.Activity(
-            type=discord.ActivityType.playing, name="DARK INFINITE ERA"))
+        await self.change_presence(
+            status=discord.Status.do_not_disturb,
+            activity=discord.Activity(type=discord.ActivityType.playing,
+                                      name="DARK INFINITE ERA"))
 
     async def send_raw(self, channel_id: int, content: str, **kwargs) -> typing.Optional[discord.Message]:
         await self.http.send_message(channel_id, content, **kwargs)
