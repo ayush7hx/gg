@@ -4,6 +4,7 @@ mcstatus
 discord-ext-menus
 aiohttp
 flask
+aiofiles
 psutil
 requests
 pymongo
@@ -20,9 +21,12 @@ python-dotenv
 pyttsx3
 PyYAML
 openai
+google-generativeai
+prodia
 duckduckgo-search==6.3.6
 pillow==11.0.0
 colorama
 chess
 python-dateutil
+pytz
 deep-translator==1.11.4
